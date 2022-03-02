@@ -26,7 +26,7 @@ public:
     void print();
     void printReverse();
     void deleteSubsection(T lower, T upper);
-    void mode();
+    T mode();
     void swapAlt();
 };
 

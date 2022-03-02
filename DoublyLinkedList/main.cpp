@@ -18,7 +18,6 @@ int main(int argc, char *argv[]) {
     //cin >> n;
     //list.deleteItem(n);
     list.print();
-    list.deleteSubsection(20,36);
-    list.print();
-    //cout << list.lengthIs() << endl;
+    cout << list.mode() << endl;
+    //list.print();
 } //main

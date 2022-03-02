@@ -39,6 +39,7 @@ void DoublyLinkedList<T>::insertItem(T item) {
                 temp = temp->next;
             } else if (temp->data >= item) { //place it
                 node->next = temp;
+                temp->back = node;
                 if (!b) { //if not first iteration
                     pretemp->next = node;
                     node->back = pretemp;
@@ -48,9 +49,8 @@ void DoublyLinkedList<T>::insertItem(T item) {
                 length++;
                 break;
             } //if
-            //need to handle head/tail cases
+            b = false;
         } //while
-        b = false;
         if (temp == NULL) {
             pretemp->next = node;
             node->back = pretemp;
@@ -142,8 +142,26 @@ void DoublyLinkedList<T>::deleteSubsection(T lower, T upper) {
 } //deleteSubsection
 
 template<class T>
-void DoublyLinkedList<T>::mode() {
-    //returns void for now for compile reasons but should return T
+T DoublyLinkedList<T>::mode() { //assumes non-empty
+    NodeType<T> *temp = head->next;
+    T item = head->data;
+    T item2 = item;
+    int i = 1;
+    int j = 1;
+    while (temp != NULL) {
+        if (temp->data == item) {
+            i++;
+        } else if (temp->data != item) {
+            item = temp->data;
+            i = 1;
+        } //if
+        if (i > j) {
+            j = i;
+            item2 = item;
+        } //if
+        temp = temp->next;
+    } //while
+    return item2;
 } //mode
 
 template<class T>
