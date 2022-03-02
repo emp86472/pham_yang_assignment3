@@ -12,7 +12,12 @@ DoublyLinkedList<T>::DoublyLinkedList() {
 
 template<class T>
 DoublyLinkedList<T>::~DoublyLinkedList() {
-
+    while (head != NULL) {
+        NodeType<T> *temp;
+        temp = head;
+        head = head->next;
+        delete temp;
+    } //while
 } //destructor
 
 template<class T>
@@ -20,6 +25,7 @@ void DoublyLinkedList<T>::insertItem(T item) {
     NodeType<T> *node = new NodeType<T>;
     node->data = item;
     node->next = NULL;
+    node->back = NULL;
     if (length == 0) {
         head = node;
         length++;
@@ -98,9 +104,20 @@ void DoublyLinkedList<T>::print() {
     cout << endl;
 } //print
 
+//this function depends on the other functions
+//to keep the data structure the same
 template<class T>
 void DoublyLinkedList<T>::printReverse() {
-
+    NodeType<T> *temp = head;
+    while (temp->next != NULL) {//place temp at the end
+        temp = temp->next;
+    } //while
+    while (temp != NULL) {
+        cout << temp->data;
+        cout << " ";
+        temp = temp->back;
+    } //while
+    cout << endl;
 } //printReverse
 
 template<class T>
