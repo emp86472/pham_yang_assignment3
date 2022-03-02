@@ -20,8 +20,8 @@ private:
 public:
     DoublyLinkedList();
     ~DoublyLinkedList();
-    void insertItem(T &item);
-    void deleteItem(T &item);
+    void insertItem(T item);
+    void deleteItem(T item);
     int lengthIs() const;
     void print();
     void printReverse();
