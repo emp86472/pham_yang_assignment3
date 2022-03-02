@@ -9,15 +9,16 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
     DoublyLinkedList<int> list;
-    cout << list.lengthIs() << endl;
     int n;
-    for (int i = 0; i < 12; i++) {
+    for (int i = 0; i < 9; i++) {
         cin >> n;
         list.insertItem(n);
     } //for
-    cout << "Item to delete: ";
-    cin >> n;
-    list.deleteItem(n);
+    //cout << "Item to delete: ";
+    //cin >> n;
+    //list.deleteItem(n);
     list.print();
-    cout << list.lengthIs() << endl;
+    list.deleteSubsection(20,36);
+    list.print();
+    //cout << list.lengthIs() << endl;
 } //main

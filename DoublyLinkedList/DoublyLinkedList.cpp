@@ -72,6 +72,7 @@ void DoublyLinkedList<T>::deleteItem(T item) {
         if (temp->data == item) {
             if (pretemp == NULL) { //if first iteration
                 head = temp->next;
+                head->back = NULL;
             } else if (temp->next != NULL) { //not last node
                 pretemp->next = temp->next;
                 temp->next->back = pretemp;
@@ -122,7 +123,22 @@ void DoublyLinkedList<T>::printReverse() {
 
 template<class T>
 void DoublyLinkedList<T>::deleteSubsection(T lower, T upper) {
-
+    NodeType<T> *temp = head;
+    NodeType<T> *pretemp = NULL;
+    if (head == NULL) {
+        return; //does nothing, not even print
+    } //if
+    while (temp->data < lower) {
+        pretemp = temp;
+        temp = temp->next;
+    } //while
+    while (temp->data <= upper) {
+        NodeType<T> *temp2;
+        temp2 = temp;
+        temp = temp->next;
+        delete temp2;
+    } //while
+    pretemp->next = temp;
 } //deleteSubsection
 
 template<class T>
