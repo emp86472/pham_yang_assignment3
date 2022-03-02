@@ -8,14 +8,16 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    DoublyLinkedList<string> list;
+    DoublyLinkedList<int> list;
     cout << list.lengthIs() << endl;
-    string n;
-    for (int i = 0; i < 5; i++) {
+    int n;
+    for (int i = 0; i < 12; i++) {
         cin >> n;
         list.insertItem(n);
     } //for
-
+    cout << "Item to delete: ";
+    cin >> n;
+    list.deleteItem(n);
     list.print();
     cout << list.lengthIs() << endl;
 } //main
