@@ -166,8 +166,40 @@ T DoublyLinkedList<T>::mode() { //assumes non-empty
 
 template<class T>
 void DoublyLinkedList<T>::swapAlt() {
-
+    if (length < 2) {
+        return;
+    } //if
+    NodeType<T> *temp = head->next;
+    NodeType<T> *pretemp = head;
+    head = head->next;
+    while (temp != NULL && pretemp != NULL) {
+        this->swapNodes(*pretemp, *temp);
+        pretemp = pretemp->back;
+        temp = temp->next;
+        if (temp->next != NULL && pretemp->next != NULL) {
+            temp = temp->next->next;
+            pretemp = pretemp->next->next;
+        } else {
+            break;
+        } //if
+    } //while
 } //swapAlt
+
+template<class T>
+void DoublyLinkedList<T>::swapNodes(NodeType<T> &a, NodeType<T> &b) {
+    NodeType<T> *pretemp = &a;
+    NodeType<T> *temp = &b;
+    if (pretemp->back != NULL) {
+        pretemp->back->next = temp;
+    } //if
+    if (temp->next != NULL) {
+        temp->next->back = pretemp;
+    } //if
+    temp->back = pretemp->back;
+    pretemp->back = temp;
+    pretemp->next = temp->next;
+    temp->next = pretemp;
+} //swapNodes
 
 //specify types of data that we plan to support
 template class DoublyLinkedList<int>;

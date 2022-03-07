@@ -16,6 +16,7 @@ class DoublyLinkedList {
 private:
     NodeType<T> *head;
     int length;
+    void swapNodes(NodeType<T> &a, NodeType<T> &b);
 
 public:
     DoublyLinkedList();
