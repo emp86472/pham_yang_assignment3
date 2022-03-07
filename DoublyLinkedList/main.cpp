@@ -3,52 +3,41 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <bits/stdc++.h>
 #include "DoublyLinkedList.h"
 
 using namespace std;
 
-int main (int argc, char *argv[]) {
+template<typename T>
+void run(int argc, char *argv[]) {
 
-    cout << "Enter list type (i - int, f - float, s - std::string): ";
-    char type;
-    cin >> type;
-    cout << endl;
+    ifstream file;
+    file.open(argv[1]); // file with list
+    setbuf(stdout, NULL);
 
-    if (type == 'i') {
-        DoublyLinkedList<int> list;
-        int insert; // stores item to insert
-        int deleteItem; // stores item to delete
-        int lowerBound; // stores upper bound to delete
-        int upperBound; // stores lower bound to delete
-    } // if
-
-    else if (type == 'f') {
-        DoublyLinkedList<float> list;
-        float insert;
-        float deleteItem;
-        float lowerBound;
-        float upperBound;
-    } // if
-
-    else if (type == 's') {
-        DoublyLinkedList<String> list;
-        string insert;
-        string deleteItem;
-        string lowerBound;
-        string upperBound;
-
-    } // if
-
-    else {
-        cout << "Invalid command"; << endl;
+    if (!file.is_open()) { // checks if file is open
+        cout << "Error: cannot parse information from ";
+        cout << argv[1] << endl;
         exit(0);
-    } // else
+    } // if
 
-    cout << "insert (i), delete (d), length (l), print (p), deleteSub (b), mode (m),
-printReverse (r), swapAtl (s), quit (q)" << endl;
+    T nums;
+    DoublyLinkedList<T> list;
+    while (file >> nums) {
+        list.insertItem(nums);
+    } // while
+
+    file.close();
+
+    cout << "insert (i), delete (d), length (l), print (p), deleteSub (b), mode (m), printReverse (r), swapAtl (s), quit (q)" << endl;
+
+    T insert;
+    T deleteItem;
+    T upperBound;
+    T lowerBound;
 
     while (true) {
-        Cout << "Enter a command: ";
+        cout << "Enter a command: ";
         char command;
         cin >> command;
         cout << endl;
@@ -72,7 +61,7 @@ printReverse (r), swapAtl (s), quit (q)" << endl;
         } // if
 
         if (command == 'l') { // length
-            cout << "The length is: " << list.LengthIs() << endl;
+            cout << "The length is: " << list.lengthIs() << endl;
             continue;
         } // if
 
@@ -88,9 +77,13 @@ printReverse (r), swapAtl (s), quit (q)" << endl;
             cout << "Enter upper bound: ";
             cin >> upperBound;
             cout << endl;
-            cout << "Original List: " << list.print() << endl;
+            cout << "Original List: ";
+            list.print();
+            cout << endl;
             list.deleteSubsection(lowerBound, upperBound);
-            cout << "modified List: " << list.print() << endl;
+            cout << "modified List: ";
+            list.print();
+            cout << endl;
             continue;
         } // if
 
@@ -106,9 +99,13 @@ printReverse (r), swapAtl (s), quit (q)" << endl;
         } // if
 
         if (command == 's') { // swapAlt
-            cout << "Original List: " << list.print() << endl;
+            cout << "Original List: ";
+            list.print();
+            cout << endl;
             list.swapAlt();
-            cout << "Swapped List: " << list.print() << endl;
+            cout << "Swapped List: ";
+            list.print();
+            cout << endl;
             continue;
         } // if
 
@@ -118,8 +115,41 @@ printReverse (r), swapAtl (s), quit (q)" << endl;
         } // if
 
         else {
-            cout << "Invalid command" < endl;
+            cout << "Invalid command" << endl;
             continue;
         } // else
+    } // while
+} // run
+
+
+
+int main (int argc, char *argv[]) {
+
+    cout << "Enter list type (i - int, f - float, s - std::string): ";
+    char type;
+    cin >> type;
+    cout << endl;
+
+    if (type == 'i') {
+        run<int>(argc, argv);
+    } // if
+
+    else if (type == 'f') {
+        run<float>(argc, argv);
+    } // if
+
+    else if (type == 's') {
+        run<string>(argc, argv);
+    } // if
+
+    else {
+        cout << "Invalid command" << endl;
+        exit(0);
+    } // else
 
 } // main
+
+// specify types of data that we plan to support
+//template typename run<int>;
+//template typename run<float>;
+//template typename run<string>;

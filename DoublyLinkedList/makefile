@@ -6,7 +6,7 @@ link: compile
 	g++ -o main main.o DoublyLinkedList.o
 
 run: link
-	./main
+	./main input.txt
 
 clean:
 	rm -f main DoublyLinkedList.o main.o
