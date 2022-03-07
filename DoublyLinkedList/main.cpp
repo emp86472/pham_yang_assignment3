@@ -8,6 +8,7 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
+    //setbuf(stdout, NULL);
     DoublyLinkedList<int> list;
     int n;
     for (int i = 0; i < 9; i++) {
@@ -17,7 +18,12 @@ int main(int argc, char *argv[]) {
     //cout << "Item to delete: ";
     //cin >> n;
     //list.deleteItem(n);
+    list.swapAlt();
+    cout << "after swap" << endl;
     list.print();
-    cout << list.mode() << endl;
+    //return 0;
+    cout << "after print" << endl;
+    //list.printReverse();
+    //cout << list.mode() << endl;
     //list.print();
 } //main
