@@ -136,13 +136,17 @@ void DoublyLinkedList<T>::deleteSubsection(T lower, T upper) {
         pretemp = temp;
         temp = temp->next;
     } //while
-    while (temp->data <= upper) {
+    while (temp != NULL && temp->data <= upper) {
         NodeType<T> *temp2;
         temp2 = temp;
         temp = temp->next;
         delete temp2;
     } //while
-    pretemp->next = temp;
+    if (pretemp != NULL ) {
+        pretemp->next = temp;
+    } else {
+        head = temp;
+    } //if
 } //deleteSubsection
 
 template<class T>
