@@ -71,8 +71,12 @@ void DoublyLinkedList<T>::deleteItem(T item) {
     while (temp != NULL) {
         if (temp->data == item) {
             if (pretemp == NULL) { //if first iteration
-                head = temp->next;
-                head->back = NULL;
+                if (temp->next != NULL) { //and isnt last node
+                    head = temp->next;
+                    head->back = NULL;
+                } else {
+                    head = NULL;
+                } //if
             } else if (temp->next != NULL) { //not last node
                 pretemp->next = temp->next;
                 temp->next->back = pretemp;
